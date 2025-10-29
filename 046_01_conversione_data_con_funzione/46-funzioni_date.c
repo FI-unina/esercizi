@@ -2,7 +2,7 @@
 
 int tempoInSecondi(int h, int m, int s) {
     int secondi = (h * 60 * 60) + (m * 60) + s;
-    return secondi; 
+    return secondi;
 }
 
 int main()
