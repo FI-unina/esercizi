@@ -53,6 +53,11 @@ int conteggio_copie(struct libro b[], int riemp);
 int ricerca_per_titolo(struct libro b[], int riemp, char titolo[]);
 bool cancellazione(struct libro b[], int *riemp);
 
+void flush(){
+        int c;
+        while((c = getchar()) != '\n' && c != EOF);
+}
+
 int main() {
     // dichiarazione ed inizializzazione array di struct libro
     struct libro biblioteca[MAX_LIBRI] = {
@@ -155,7 +160,7 @@ void stampa_tutto(struct libro b[], int riemp){
 
         1. Posso utilizzare fgets per prendere una stringa in input (inclusa degli spazi) ma devo anche utilizzare
         anche strcspn per sostituire lo '\n' (include dall'input da tastiera) con lo '\0'. Devo anche ricordarmi di
-        utilizzare fflush(stdin) come prima istruzione prima della prima fgets per "azzerare" il buffer dello stdin
+        utilizzare flush() come prima istruzione prima della prima fgets per "azzerare" il buffer dello stdin
         dei precedenti inserimenti (per esempio quando inserisco la scelta da tastiera in accordo al menu contestuale)
 
         2. Al posto di usare fgets + strcspn posso utilizza lo stesso la scanf considerando come primo 
@@ -167,7 +172,7 @@ void stampa_tutto(struct libro b[], int riemp){
         -   Con %*c, legge il carattere newline dal buffer di input (che non viene effettivamente letto) 
             e * indica che questo input letto viene scartato (soppressione dell'assegnazione).
             Infatti non è necessario immagazzinare lo \n e questo newline nel buffer non crea alcun 
-            problema per i prossimi input che si potrebbero prendere, quindi potremmo evitare il fflush (stdin);
+            problema per i prossimi input che si potrebbero prendere, quindi potremmo evitare il flush();
         In definitiva posso usare:
             
             scanf ("%[^\n]%*c", titolo);
@@ -179,10 +184,8 @@ bool inserisci(struct libro b[], int *riemp) {
     */
 
     if (*riemp < MAX_LIBRI){
-        //cin.ignore(); //C++
-        fflush (stdin); //è necessario questo perchè la scelta inserita da tastiera, in base al menu contestuale, aggiunge uno \n
+        flush(); //è necessario questo perchè la scelta inserita da tastiera, in base al menu contestuale, aggiunge uno \n
         printf("titolo: \n");
-        //cin >> biblioteca[r].titolo; //C++
         fgets(b[*riemp].titolo, 71, stdin);
 
         /* 
@@ -193,16 +196,12 @@ bool inserisci(struct libro b[], int *riemp) {
         */  
 
         b[*riemp].titolo[strcspn(b[*riemp].titolo, "\n")] = '\0';
-        //cin.getline(b[riemp].titolo, 71);
 
         printf("autore: \n");
-        //cin >> biblioteca[r].autore;
-        //cin.getline(b[riemp].autore, 51);
         fgets(b[*riemp].autore, 51, stdin);
         b[*riemp].autore[strcspn(b[*riemp].autore, "\n")] = '\0';
 
         printf("anno: \n");
-        //cin >> b[riemp].anno_pub;
         scanf("%d", &b[*riemp].anno_pub);
 
         printf("copie: \n");
@@ -249,9 +248,7 @@ bool cancellazione(struct libro b[], int *riemp){
     
     char titolo[71];
     printf("Inserire il titolo esatto del libro da eliminare: \n");
-    //cin.ignore();
-    //cin.getline(titolo, 71);
-    fflush (stdin);
+    flush();
     
     
     fgets(titolo, 71, stdin);

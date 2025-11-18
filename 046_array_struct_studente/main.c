@@ -34,6 +34,10 @@ void stampa_da_nome_cognome(const struct studente info_studenti[MAXSTUDENTI],
 
 void inserisci_studente(struct studente info_studenti[], int *r);
 
+void flush(){
+        int c;
+        while((c = getchar()) != '\n' && c != EOF);
+}
 
 int main() {
     struct studente info_studenti[MAXSTUDENTI] = {
@@ -139,13 +143,13 @@ void inserisci_studente(struct studente info_studenti[], int *r){
     
     int cur_index = *r;
 
-    fflush(stdin);
+    flush();
     printf("Inserisci il nome dello studente:\n");
     //scanf("%s", info_studenti[r].nome); //AAAAAA
     fgets(info_studenti[cur_index].nome, 51, stdin);
     info_studenti[cur_index].nome[strcspn(info_studenti[cur_index].nome, "\n")] = '\0';
 
-    fflush(stdin);
+    flush();
     printf("Inserisci il cognome dello studente:\n");
     //scanf("%s", info_studenti[r].cognome); // AAAAA
     fgets(info_studenti[cur_index].cognome, 51, stdin);

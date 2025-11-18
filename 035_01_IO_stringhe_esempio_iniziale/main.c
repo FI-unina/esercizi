@@ -14,6 +14,11 @@
 
 #define MAXDIM 50
 
+void flush(){
+	int c;
+	while((c = getchar()) != '\n' && c != EOF);
+}
+
 /*
  * 
  */
@@ -27,7 +32,7 @@ int main() {
     scanf("%d", &val);
     
     printf("Inserisci una stringa\n");
-    fflush(stdin); //è necessario se c'è una scanf precedente dal momento che "aggiunge" uno '\n'...PROVARE A COMMENTARLA
+    flush(); //è necessario se c'è una scanf precedente dal momento che "aggiunge" uno '\n'...PROVARE A COMMENTARLA
     fgets(str1, MAXDIM, stdin);
     /* 
         NOTA: fgets include lo '\n' finale nella stringa. E' possibile rimpiazzare tale '\n' con il carattere

@@ -54,6 +54,11 @@ int conteggio_copie(struct libro *b, int riemp);
 int ricerca_per_titolo(struct libro *b, int riemp, char titolo[]);
 struct libro * cancellazione(struct libro b[], int *riemp);
 
+void flush(){
+        int c;
+        while((c = getchar()) != '\n' && c != EOF);
+}
+
 int main() {
     // dichiarazione ed inizializzazione array di struct libro
     
@@ -164,7 +169,7 @@ void stampa_tutto(struct libro *b, int riemp){
         -   Con %*c, legge il carattere newline dal buffer di input (che non viene effettivamente letto) 
             e * indica che questo input letto viene scartato (soppressione dell'assegnazione).
             Infatti non è necessario immagazzinare lo \n e questo newline nel buffer non crea alcun 
-            problema per i prossimi input che si potrebbero prendere, quindi potremmo evitare il fflush (stdin);
+            problema per i prossimi input che si potrebbero prendere, quindi potremmo evitare il flush();
         In definitiva posso usare:
             
             scanf ("%[^\n]%*c", titolo);
@@ -183,7 +188,7 @@ struct libro *inserisci(struct libro *b, int *riemp) {
 
     if (new_biblio != NULL){
         
-        fflush (stdin); //è necessario questo perchè la scelta inserita da tastiera, in base al menu contestuale, aggiunge uno \n
+        flush(); //è necessario questo perchè la scelta inserita da tastiera, in base al menu contestuale, aggiunge uno \n
         printf("titolo: \n");
         
         fgets((new_biblio+cur_index)->titolo, 71, stdin);
@@ -249,7 +254,7 @@ struct libro *cancellazione(struct libro *old_biblio, int *riemp){
     char titolo[71];
     printf("Inserire il titolo esatto del libro da eliminare: \n");
     
-    fflush (stdin);  
+    flush();  
     fgets(titolo, 71, stdin);
     titolo[strcspn(titolo, "\n")] = '\0';
     

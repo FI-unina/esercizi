@@ -15,7 +15,7 @@ int main() {
     scanf("%f", &r);
     
     // chiamata alla funzione calcola_area_cerchio.
-    // il risultato viene passato a cout per la stampa.
+    // il risultato viene passato alla printf per la stampa.
     printf("L'area del cerchio di raggio %f è pari a: %f\n", r, calcola_area_cerchio(r));
     
     printf("Inserisci un nuovo valore per il raggio: \n");

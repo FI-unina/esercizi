@@ -143,29 +143,13 @@ void inserisci_nuovo_esame(struct esame V[], int *riemp){
     struct esame esame_da_inserire;
     printf("Inserisci Matricola:\n");
     scanf ("%[^\n]%*c", &esame_da_inserire.matricola_studente);
-    //cin >> esame_da_inserire.matricola_studente;
     
     printf("Inserisci nome esame:\n");
-    //cin >> esame_da_inserire.nome_esame;
-    //cin.ignore();
-    //cin.getline(esame_da_inserire.nome_esame, 51);
     scanf ("%[^\n]%*c", &esame_da_inserire.nome_esame);
 
     printf("Inserisci voto:\n");
-    //cin >> esame_da_inserire.voto;
     scanf ("%d", &esame_da_inserire.voto);
 
-    /*
-    // alternativa:
-    char scelta_lode;
-    printf("Lode? (s/n):";
-    cin >> scelta_lode;
-    if (scelta_lode == 's')
-        esame_da_inserire.lode = true;
-    else
-        esame_da_inserire.lode = false;
-    */
-    
     do{
         printf("Lode: 0=no, 1=sì:\n");
         scanf ("%[^\n]%*c", &esame_da_inserire.lode);
