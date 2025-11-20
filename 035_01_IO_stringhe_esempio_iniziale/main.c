@@ -24,7 +24,7 @@ void flush(){
  */
 int main() {
 
-    char str1[MAXDIM], str2[MAXDIM];
+    char str1[MAXDIM];
     char target_str [] = "gigi";
 
     int val;
@@ -44,7 +44,7 @@ int main() {
     printf("\n");
     //questo primo strcmp fallisce perchè str1 non è null-terminated
     printf("1. strcmp confrontando l'input da tastiera con gigi\\n....IL RISULTATO è un MATCH\n");
-    //if (strcmp(str1, target_str) == 0)
+    //if (strcmp(str1, target_str) == 0) //potrei usare come secondo parametro anche la var. target_str
     if (strcmp(str1, "gigi\n") == 0)
         printf("MATCH\n");
     else
@@ -52,7 +52,7 @@ int main() {
     printf("\n");
     //questo primo strcmp fallisce perchè str1 non è null-terminated
     printf("2. strcmp confrontando l'input da tastiera con gigi (implicitamente nella strcmp uso stringhe null-terminated)....IL RISULTATO è un NO MATCH\n");
-    //if (strcmp(str1, target_str) == 0)
+    //if (strcmp(str1, target_str) == 0) //potrei usare come secondo parametro anche la var. target_str
     if (strcmp(str1, "gigi") == 0)
         printf("MATCH\n");
     else
@@ -64,8 +64,8 @@ int main() {
 
     //questo primo strcmp fallisce perchè str1 non è null-terminated
     printf("3. strcmp confrontando l'input da tastiera con gigi....IL RISULTATO è un MATCH\n");
-    //if (strcmp(str1, target_str) == 0)
-    if (strcmp(str1, "gigi") == 0) //potrei usare come secondo parametro anche la var. target_str
+    //if (strcmp(str1, target_str) == 0) //potrei usare come secondo parametro anche la var. target_str
+    if (strcmp(str1, "gigi") == 0) 
         printf("MATCH\n");
     else
         printf("NO MATCH\n");;
