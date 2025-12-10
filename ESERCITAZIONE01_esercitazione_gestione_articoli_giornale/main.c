@@ -27,10 +27,6 @@ float calcolo_media(articolo* articoli, int dim);
 int conta_occorrenze_inferiore_media(articolo* articoli, int dim, float media);
 articolo* generazione_array(articolo* articoli, int dim, int* dim_new_vet);
 
-//EXTRA
-void ordina_articoli_per_anno(articolo *articoli, int dim);
-void scambia(articolo *articoli, int i, int min);
-
 void flush(){
        int c;
        while((c = getchar()) != '\n' && c != EOF);
@@ -67,8 +63,7 @@ int main(){
             printf("Operazioni possibili:\n");
             printf("1. Inserimento nuovo articolo nella posizoine precedente a quello con il minimo numero di parole\n");
             printf("2. Generazione nuovo vettore con gli articoli con numero di parole inferiore o uguale alla media\n");
-            printf("3. Ordina\n");
-            printf("4. Esci\n\n");
+            printf("3. Esci\n\n");
 
             printf("Inserire la scelta: ");
             scanf("%d", &scelta);
@@ -106,15 +101,7 @@ int main(){
 
                 }
 
-                case 3:{
-
-                    ordina_articoli_per_anno(articoli, dim);
-                    stampa_vettore(articoli, dim);
-                    break;
-                }
-
-
-                case 4: // Uscita
+                case 3: // Uscita
                     printf("Arrivederci\n");
                     free(articoli); //dealloco vettore di articoli
                     break;
@@ -125,7 +112,7 @@ int main(){
 
             }
 
-        } while(scelta != 4);
+        } while(scelta != 3);
 
 
     }
@@ -315,32 +302,3 @@ articolo* generazione_array(articolo* articoli, int dim, int* dim_new_vet){
 
 }
 
-void scambia(articolo *articoli, int i, int min){
-
-    articolo temp;
-    // uso esplicito dei puntatori per accedere all'array
-    temp = *(articoli+i);
-    *(articoli+i) = *(articoli + min);
-    *(articoli + min) = temp;
-
-}
-
-void ordina_articoli_per_anno(articolo *articoli, int dim){
-
-    //selection sort
-    int min = INT_MAX;
-
-    for(int i=0; i<dim-1; i++){
-        min = i;
-        for (int j=i+1; j<dim; j++){
-
-            if ( (articoli + j)->anno < (articoli + i)->anno) // uso arrow notation per accedere ai campi della struct
-            //if ( (*(articoli + j)).anno < (*(articoli + i)).anno) //uso dot notation per accedere ai campi della struct
-                min = j;
-
-        }
-        scambia(articoli, i, min);
-
-    }
-
-}
