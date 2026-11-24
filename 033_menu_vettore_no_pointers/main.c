@@ -134,7 +134,7 @@ int ricerca(int v[], int riemp, int valore_da_cercare){
         else
             i++;
     }
-    if (trovato)
+    if (trovato) //if (trovato == true) equivalente
         return i;
     else
         return -1;   

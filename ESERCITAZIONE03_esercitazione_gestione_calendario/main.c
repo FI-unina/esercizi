@@ -214,6 +214,36 @@ void scambia(tipo_calendario* a, tipo_calendario* b) {
     *b = temp;
 }
 
+/*
+char nome[MAX_NOM];
+  int data;
+  char ora[20];
+  char luogo[MAX_LUO];
+  int durata;
+  int id;
+*/
+void scambia_deep_copy(tipo_calendario* a, tipo_calendario* b) {
+    tipo_calendario temp = *a;
+    
+    // *a = *b
+    strcpy(a->nome, b->nome);
+    a->data = b->data;
+    strcpy(a->ora, b->ora);
+    strcpy(a->luogo, b->luogo);
+    a->durata = b->durata;
+    a->id = b->id;
+    
+    // *b = temp;
+
+    strcpy(b->nome, temp.nome);
+    b->data = temp.data;
+    strcpy(b->ora, temp.ora);
+    strcpy(b->luogo, temp.luogo);
+    b->durata = temp.durata;
+    b->id = temp.id;
+
+}
+
 void ordina_per_data(tipo_calendario* calendario, int dimensione) {
     for (int i = 0; i < dimensione - 1; i++) {
         int min = i;
@@ -222,6 +252,12 @@ void ordina_per_data(tipo_calendario* calendario, int dimensione) {
                 min = j;   
             }
         }
-        scambia(&calendario[i], &calendario[min]);
+        //scambia(&calendario[i], &calendario[min]);
+        //printf("prima dello scambio\n");
+        //stampa_attivita(calendario, dimensione);
+        if (i != min)
+            scambia_deep_copy(&calendario[i], &calendario[min]);
+        //printf("dopo lo scambio\n");
+        //stampa_attivita(calendario, dimensione);
     }
 }
